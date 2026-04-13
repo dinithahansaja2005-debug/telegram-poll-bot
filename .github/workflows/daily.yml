@@ -1,0 +1,26 @@
+name: Send Daily Poll
+
+on:
+  schedule:
+    # This is in UTC time. 1:00 AM in your timezone might be different.
+    # For example, if you are in UTC+5, set this to '20 20 * * *' (8:00 PM UTC)
+    - cron: '00 19 * * *' 
+  workflow_dispatch: # This allows you to run it manually to test
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install python-telegram-bot
+      - name: Run bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python main.py
