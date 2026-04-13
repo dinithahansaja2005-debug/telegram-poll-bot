@@ -2,10 +2,9 @@ name: Send Daily Poll
 
 on:
   schedule:
-    # This is in UTC time. 1:00 AM in your timezone might be different.
-    # For example, if you are in UTC+5, set this to '20 20 * * *' (8:00 PM UTC)
-    - cron: '00 19 * * *' 
-  workflow_dispatch: # This allows you to run it manually to test
+    # 19:30 UTC is exactly 01:00 AM in Sri Lanka
+    - cron: '30 19 * * *' 
+  workflow_dispatch: # This lets you test it manually
 
 jobs:
   run-bot:
